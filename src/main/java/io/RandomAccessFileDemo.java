@@ -64,6 +64,8 @@ public class RandomAccessFileDemo {
 			System.out.print(Integer.toHexString(b & 0xff)+" ");
 		}
 		
+		raf.close();
+		
 	}
 
 }

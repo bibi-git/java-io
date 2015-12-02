@@ -8,7 +8,6 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -22,6 +21,7 @@ import java.io.PrintWriter;
  * 
  * IO流(输入流、输出流)
  * 字节流、字符流
+ * 
  * 1.字节流
  * 1)InputStream、OutputStream
  * InputStream抽象了应用程序读取数据的方式
@@ -55,6 +55,20 @@ import java.io.PrintWriter;
  * FileOutputStream--->write()方法相当于一滴一滴的把水“转移”过去
  * DataOutputStream--->writeXxx()方法会方便一些，相当于一瓢一瓢把水“转移”
  * BufferedOutputStream--->write()方法更方便，相当于一瓢一瓢先放入桶中，再从桶中倒入缸中
+ * 
+ * 
+ * 2.字符流
+ * 1)编码问题
+ * 2)认识文本和文本文件
+ * java的文本(char)是16位无符号整数，是字符的Unicode编码(双字节编码)
+ * 文件是byte byte byte ...的数据序列
+ * 文本文件是文本(char)序列按照某种编码方案(utf-8,utf-16be,gbk)序列化为byte的存储结果
+ * 3)字符流(Reader Writer)
+ * 字符的处理，一次处理一个字符
+ * 字符的底层仍然是基本的字节序列
+ * 字符流的基本实现
+ *  InputStreamReader 完成byte流解析为char流，按照编码解析
+ *  OutputStreamWriter 提供char流到byte流，按照编码处理
  */
 public class IOUtilsDemo {
 	
@@ -72,7 +86,7 @@ public class IOUtilsDemo {
 		int i = 1;
 		while((b = in.read())!=-1){
 			/*if(b <= 0xf){
-				//单位数前面步0
+				//单位数前面补0
 				System.out.print("0");
 			}*/
 			System.out.print(Integer.toHexString(b)+" ");
@@ -285,8 +299,8 @@ public class IOUtilsDemo {
 		
 		char[] buffer = new char[8*1024];
 		while((c = isr.read(buffer, 0, buffer.length))!=-1){
-			String s = new String(buffer,0,c);
-			System.out.print(s);
+			//String s = new String(buffer,0,c);
+			//System.out.print(s);
 			osw.write(buffer, 0, c);
 		}
 		
@@ -303,8 +317,8 @@ public class IOUtilsDemo {
 		int c;
 		char[] buffer = new char[8*1024];
 		while((c = fr.read(buffer, 0, buffer.length))!=-1){
-			String s = new String(buffer,0,c);
-			System.out.print(s);
+			//String s = new String(buffer,0,c);
+			//System.out.print(s);
 			fw.write(buffer, 0, c);
 			fw.flush();
 		}
@@ -321,7 +335,7 @@ public class IOUtilsDemo {
 		
 		String line;
 		while((line = br.readLine())!=null){
-			System.out.println(line);//没有包括换行
+			//System.out.println(line);//没有包括换行
 			//bw.write(line);
 			//bw.newLine();//单独写出换行
 			//bw.flush();

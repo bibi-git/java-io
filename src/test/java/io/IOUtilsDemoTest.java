@@ -25,15 +25,15 @@ public class IOUtilsDemoTest {
 		long start = System.currentTimeMillis();
 		IOUtilsDemo.fileOutputStream1();
 		long end = System.currentTimeMillis();
-		//System.out.println(end - start);
+		System.out.println(end - start);
 	}
 	
 	
 	@Test
 	public void testCopyFile() throws IOException{
 		long start = System.currentTimeMillis();
-		IOUtilsDemo.copyFileByByte(new File("d:/a/111.rar"), new File("d:/a/222.rar"));//13232
-		//IOUtilsDemo.copyFileByBufArray(new File("d:/a/111.rar"), new File("d:/a/222.rar"));//30
+		//IOUtilsDemo.copyFileByByte(new File("d:/a/111.rar"), new File("d:/a/222.rar"));//13232
+		IOUtilsDemo.copyFileByBufArray(new File("d:/a/111.rar"), new File("d:/a/222.rar"));//10
 		//IOUtilsDemo.copyFileByData(new File("d:/a/111.rar"), new File("d:/a/222.rar"));//12399
 		//IOUtilsDemo.copyFileByBuffer(new File("d:/a/111.rar"), new File("d:/a/222.rar"));//9097
 		long end = System.currentTimeMillis();
@@ -46,7 +46,7 @@ public class IOUtilsDemoTest {
 		long start = System.currentTimeMillis();
 		IOUtilsDemo.dataOutputStream("demo/DataOutput.txt");
 		long end = System.currentTimeMillis();
-		//System.out.println(end - start);
+		System.out.println(end - start);
 	}
 	
 	@Test
@@ -54,23 +54,35 @@ public class IOUtilsDemoTest {
 		long start = System.currentTimeMillis();
 		IOUtilsDemo.dataInputStream("demo/DataOutput.txt");
 		long end = System.currentTimeMillis();
-		//System.out.println(end - start);
+		System.out.println(end - start);
 	}
 	
 	
 	@Test
 	public void testInputStreamReaderAndWrite() throws IOException{
-		IOUtilsDemo.inputStreamReaderAndWrite(new File("d:/a/abc.txt"), new File("d:/a/ab.txt"));
+		
+		long start = System.currentTimeMillis();
+		IOUtilsDemo.inputStreamReaderAndWrite(new File("d:/a/111.rar"), new File("d:/a/222.rar"));//285
+		long end = System.currentTimeMillis();
+		System.out.println(end - start);
+		
 	}
 	
 	@Test
 	public void testFileReaderAndWrite() throws IOException{
-		IOUtilsDemo.inputStreamReaderAndWrite(new File("d:/a/abc.txt"), new File("d:/a/ab.txt"));
+		
+		long start = System.currentTimeMillis();
+		IOUtilsDemo.fileReaderAndWrite(new File("d:/a/111.rar"), new File("d:/a/222.rar"));//310
+		long end = System.currentTimeMillis();
+		System.out.println(end - start);
 	}
 	
 	@Test
 	public void testBufferedReaderAndWrite() throws IOException{
-		IOUtilsDemo.bufferedReaderAndWrite(new File("d:/a/abc.txt"), new File("d:/a/ab.txt"));
+		long start = System.currentTimeMillis();
+		IOUtilsDemo.bufferedReaderAndWrite(new File("d:/a/111.rar"), new File("d:/a/222.rar"));//446
+		long end = System.currentTimeMillis();
+		System.out.println(end - start);
 	}
 
 }

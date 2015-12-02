@@ -14,7 +14,8 @@ public class FileDemoTest {
 	
 	@Test
 	public void testFileDir() throws IOException{
-		String dir = "D:/Apache24/";
+		String dir = "D:/a/1.txt";
+		//String dir = "D:/Apache24/";
 		FileDemo.fileDir(new File(dir));
 	}
 
